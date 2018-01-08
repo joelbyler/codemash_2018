@@ -1,0 +1,2 @@
+defmodule SupportChecks do
+end

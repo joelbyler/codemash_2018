@@ -1,0 +1,2 @@
+defmodule CodemashCli do
+end
