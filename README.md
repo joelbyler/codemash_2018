@@ -6,7 +6,7 @@ Companion repo for Joel's talk at CodeMash 2018
 
 
 | Directory     | Description   |
-|:-------------:|:-------------:|
+|:------------- |:------------- |
 | [scripts ](https://github.com/joelbyler/codemash_2018/tree/master/scripts) | Simple `.exs` scripts |
 | [support_checks ](https://github.com/joelbyler/codemash_2018/tree/master/support_checks) | Automated browser tests for checking status pages |
 | [codemash_cli ](https://github.com/joelbyler/codemash_2018/tree/master/codemash_cli) | CLI to query the CodeMash schedule for topics of interest |
