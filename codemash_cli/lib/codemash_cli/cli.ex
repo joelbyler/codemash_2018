@@ -17,12 +17,15 @@ defmodule CodemashCli.CLI do
         :help
 
       {_, [search_term], _} ->
-        {search_term}
+        search_term
+
+      {_, _, _} ->
+        :help
     end
   end
 
   def process(:help) do
-    Mix.shell().info("""
+    IO.puts("""
     Codemash CLI
     — — — — —
     usage: codemash_cli <search_term>
@@ -30,7 +33,7 @@ defmodule CodemashCli.CLI do
     """)
   end
 
-  def process({search_term}) do
+  def process(search_term) do
     CodemashCli.JSONFetch.fetch(search_term)
     |> CodemashCli.ExtractMap.extract_from_body()
     |> string_format

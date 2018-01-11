@@ -10,28 +10,25 @@ defmodule CodemashCli.JSONFetch do
     "https://speakers.codemash.org/api/SessionsData?type=json"
   end
 
-  defp filter_for_term(json, search_term) do
-    {:ok, body} = json
-
-    {
-      :ok,
-      Enum.filter(body, fn x ->
-        Map.fetch(x, "Abstract")
-        |> (fn y ->
-              {_, abstract} = y
-              abstract
-            end).()
-        |> String.downcase()
-        |> String.contains?(String.downcase(search_term))
-      end)
-    }
-  end
-
   def handle_json({:ok, %{status_code: 200, body: body}}) do
     {:ok, Poison.Parser.parse!(body)}
   end
 
   def handle_json({_, %{status_code: _, body: _}}) do
     IO.puts("Something went wrong. Please check your internet connection")
+  end
+
+  defp filter_for_term(json, search_term) do
+    {:ok, body} = json
+
+    {
+      :ok,
+      body
+        |> Enum.filter(fn x -> Map.fetch(x, "Abstract")
+        |> (fn y -> {_, abstract} = y; abstract end).()
+        |> String.downcase()
+        |> String.contains?(String.downcase(search_term))
+      end)
+    }
   end
 end
